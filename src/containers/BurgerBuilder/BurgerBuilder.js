@@ -19,7 +19,18 @@ class BurgerBuilder extends Component {
       cheese: 0,
       meat: 0
     },
-    totalPrice: BASE_PRICE
+    totalPrice: BASE_PRICE,
+    orderDisabled: true
+  }
+
+  updatePurchaseState = (ingredients) => {
+    let disableOrder = true;
+    Object.keys(ingredients).forEach((ingredient) => {
+      if(ingredients[ingredient] > 0) {
+        disableOrder = false;
+      }
+    });
+    this.setState({orderDisabled: disableOrder});
   }
 
   calculateTotalPrice = (ingredients) => {
@@ -35,6 +46,7 @@ class BurgerBuilder extends Component {
     updatedIngredients[type] = updatedIngredients[type] + 1;
     let updatedPrice = BASE_PRICE + this.calculateTotalPrice(updatedIngredients);
     this.setState({totalPrice: updatedPrice, ingredients: updatedIngredients});
+    this.updatePurchaseState(updatedIngredients);
   }
 
   removeIngredientHandler = (type) => {
@@ -45,6 +57,7 @@ class BurgerBuilder extends Component {
     }
     let updatedPrice = BASE_PRICE + this.calculateTotalPrice(updatedIngredients);
     this.setState({totalPrice: updatedPrice, ingredients: updatedIngredients});
+    this.updatePurchaseState(updatedIngredients);
   }
 
   render() {
@@ -62,6 +75,7 @@ class BurgerBuilder extends Component {
           removed={this.removeIngredientHandler}
           disabledInformation={disabledInfo}
           price={this.state.totalPrice}
+          disableOrder={this.state.orderDisabled}
         />
       </AuxiliaryHOC>
     );
