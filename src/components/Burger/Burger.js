@@ -3,7 +3,8 @@ import classes from './Burger.css';
 import BurgerIngredient from './BurgerIngredient/BurgerIngredient';
 
 const burger = (props) => {
-  const transformedIngredients = Object.keys(props.ingredients).map(igKey => {
+  var elementsPresent = false;
+  let transformedIngredients = Object.keys(props.ingredients).map(igKey => {
     var ingredientCount = props.ingredients[igKey];
     var ingredientsList = [];
 
@@ -13,6 +14,17 @@ const burger = (props) => {
 
     return ingredientsList;
   });
+
+  transformedIngredients.forEach((ingredient) => {
+    if(ingredient.length > 0){
+      elementsPresent = true;
+    }
+  })
+
+  if(elementsPresent === false){
+    transformedIngredients = <p>Add some ingredients first!</p>
+  }
+
   return (
     <div className='Burger'>
       <BurgerIngredient type="bread-top"/>
