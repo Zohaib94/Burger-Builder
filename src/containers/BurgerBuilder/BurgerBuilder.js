@@ -22,7 +22,13 @@ class BurgerBuilder extends Component {
       meat: 0
     },
     totalPrice: BASE_PRICE,
-    orderDisabled: true
+    orderDisabled: true,
+    displayOrder: false
+  }
+
+  toggleOrderDisplay = () => {
+    let newState = this.state.displayOrder
+    this.setState({displayOrder: !newState})
   }
 
   updatePurchaseState = (ingredients) => {
@@ -78,8 +84,9 @@ class BurgerBuilder extends Component {
           disabledInformation={disabledInfo}
           price={this.state.totalPrice}
           disableOrder={this.state.orderDisabled}
+          toggleOrder={this.toggleOrderDisplay}
         />
-        <Modal>
+        <Modal show={this.state.displayOrder} toggleOrder={this.toggleOrderDisplay}>
           <OrderSummary ingredients={this.state.ingredients} />
         </Modal>
       </AuxiliaryHOC>
