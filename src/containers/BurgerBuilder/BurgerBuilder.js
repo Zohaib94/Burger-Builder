@@ -87,7 +87,7 @@ class BurgerBuilder extends Component {
           toggleOrder={this.toggleOrderDisplay}
         />
         <Modal show={this.state.displayOrder} toggleOrder={this.toggleOrderDisplay}>
-          <OrderSummary ingredients={this.state.ingredients} />
+          <OrderSummary ingredients={this.state.ingredients} removeModal={this.toggleOrderDisplay}/>
         </Modal>
       </AuxiliaryHOC>
     );

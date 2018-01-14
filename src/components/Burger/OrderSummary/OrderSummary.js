@@ -1,5 +1,6 @@
 import React from 'react';
 import AuxiliaryHOC from '../../../hoc/Aux';
+import CustomButton from '../../UI/CustomButton/CustomButton'
 
 const orderSummary = (props) => {
   let orderDetails = [];
@@ -14,6 +15,8 @@ const orderSummary = (props) => {
       <p>Following are the summary of your ordered burger</p>
       <ul>{orderDetails}</ul>
       <p>Continue to Checkout?</p>
+      <CustomButton buttonStyle={'Danger'} clickEvent={props.removeModal}>CANCEL</CustomButton>
+      <CustomButton buttonStyle={'Success'}>CONTINUE</CustomButton>
     </AuxiliaryHOC>
   );
 }
