@@ -17,7 +17,7 @@ const orderSummary = (props) => {
       <p><strong>Total Price: {props.totalPrice.toFixed(2)}</strong></p>
       <p>Continue to Checkout?</p>
       <CustomButton buttonStyle={'Danger'} clickEvent={props.removeModal}>CANCEL</CustomButton>
-      <CustomButton buttonStyle={'Success'}>CONTINUE</CustomButton>
+      <CustomButton buttonStyle={'Success'} clickEvent={props.removeModal}>CONTINUE</CustomButton>
     </AuxiliaryHOC>
   );
 }
